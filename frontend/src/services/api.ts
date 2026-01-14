@@ -1,7 +1,15 @@
 import axios from 'axios';
 
+const RAW_API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
+const API_BASE_URL = RAW_API_BASE.replace(/\/+$/, '') || '/api';
 
-const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
+
+const DEFAULT_BACKEND_ORIGIN = 'http://localhost:3000';
+const BACKEND_ORIGIN = API_BASE_URL.startsWith('http')
+  ? API_BASE_URL.replace(/\/api$/, '')
+  : DEFAULT_BACKEND_ORIGIN;
+
+export { API_BASE_URL, BACKEND_ORIGIN };
 
 const api = axios.create({
   baseURL: API_BASE_URL,

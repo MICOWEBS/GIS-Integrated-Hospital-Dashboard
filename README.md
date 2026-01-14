@@ -2,6 +2,13 @@
 
 A full-stack app that visualizes hospitals & ambulances on an interactive map, finds the nearest available ambulance using PostGIS + Redis caching, and streams updates in real time via Socket.IO. Built to be deployment-ready (Vercel + Render).
 
+## 👀 For Reviewers (TL;DR)
+- ✅ **Spatial intelligence**: PostGIS geography + KNN nearest-ambulance query (geodesic distance, not flat maps).
+- ✅ **Performance**: Redis caching (60s TTL) on hot spatial and routing queries.
+- ✅ **Real-time UX**: Socket.IO pushes ambulance/incident updates to the map.
+- ✅ **Production mindset**: env-driven config, CORS allow-list, OSRM base URL override, dev-only seeding/sync.
+- ✅ **Monorepo-ready for deployment**: Vercel (frontend) + Render (backend) with clear env var setup.
+
 ## ✨ Highlights
 - 🗺️ MapLibre + PostGIS geodesic queries for accurate nearest-ambulance results
 - ⚡ Redis caching for hot spatial queries

@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { useStore } from '../store/useStore';
-import { Ambulance, Incident } from '../services/api';
+import { Ambulance, Incident, BACKEND_ORIGIN } from '../services/api';
 
 export const useWebSocket = () => {
   const { updateAmbulance, updateIncident, setError } = useStore();
 
   useEffect(() => {
-    // WebSocket server URL:
-    // - Default: current origin (works if API is proxied behind same domain)
-    // - Override: set VITE_WS_URL (e.g. "https://your-backend.onrender.com")
-    const WS_URL = (import.meta as any).env?.VITE_WS_URL || window.location.origin;
+  
+    const WS_URL = (import.meta as any).env?.VITE_WS_URL || BACKEND_ORIGIN;
 
     const socket: Socket = io(WS_URL, {
       transports: ['websocket', 'polling'],
