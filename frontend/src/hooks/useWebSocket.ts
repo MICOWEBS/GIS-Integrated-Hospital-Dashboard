@@ -23,7 +23,7 @@ export const useWebSocket = () => {
       console.log('⚡ WebSocket disconnected');
     });
 
-    socket.on('connect_error', (error) => {
+    socket.on('connect_error', (error: unknown) => {
       console.error('WebSocket connection error:', error);
       setError('WebSocket connection failed');
     });
